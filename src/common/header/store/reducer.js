@@ -4,6 +4,7 @@ import { fromJS } from 'immutable';
 const defaultStore = fromJS({
   focused: false,
   mouseIn: false,
+  iconRotate: false,
   searchInfoList: [],
   currentPage: 1,
   totalPage: 1,
@@ -32,6 +33,9 @@ const reducer = (state = defaultStore, action) => {
     }
     case actionTypes.SWITCH_PAGE: {
       return state.set('currentPage', action.page)
+    }
+    case actionTypes.SET_ICON_ROTATE: {
+      return state.set('iconRotate', action.rotate)
     }
     default:
       return state;

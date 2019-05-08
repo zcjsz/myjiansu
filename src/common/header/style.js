@@ -119,11 +119,38 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
   float: right;
   font-size: 13px;
+  cursor: pointer;
   .spin {
     display: block;
     float: left;
     font-size: 12px;
     margin-right: 2px;
+  }
+  .rotate-enter {
+    transform: rotate(0deg);
+    transform-origin: center center;
+  }
+  .rotate-enter-active {
+    transform: rotate(360deg);
+    transform-origin: center center;
+    transition: transform 300ms;
+  }
+  .rotate-enter-done {
+    transform: rotate(360deg);
+    transform-origin: center center;
+  }
+  .rotate-exit {
+    transform: rotate(0deg);
+    transform-origin: center center;
+  }
+  .rotate-exit-active {
+    transform: rotate(0deg);
+    transform-origin: center center;
+  
+  }
+  .rotate-exit-done {
+    transform: rotate(0deg);
+    transform-origin: center center;
   }
 `;
 

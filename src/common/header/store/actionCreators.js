@@ -45,3 +45,8 @@ export const switchPage = (page) => ({
   type: actionTypes.SWITCH_PAGE,
   page: page
 });
+
+export const iconRotate = (rotate) => ({
+  type: actionTypes.SET_ICON_ROTATE,
+  rotate: rotate
+});

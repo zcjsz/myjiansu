@@ -5,3 +5,4 @@ export const SET_TOTAL_PAGE = 'header/SET_TOTAL_PAGE';
 export const MOUSE_ENTER = 'header/MOUSE_ENTER';
 export const MOUSE_LEAVE = 'header/MOUSE_LEAVE';
 export const SWITCH_PAGE = 'header/SWITCH_PAGE';
+export const SET_ICON_ROTATE = 'header/SET_ICON_ROTATE';

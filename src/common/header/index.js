@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { actionCreator } from './store'
+import { actionCreators } from './store'
 import {
   HeaderWrapper,
   Logo,
@@ -22,7 +22,7 @@ import {
 class Header extends Component {
 
   render() {
-    const { focused, mouseIn, handleInputFocus, handleInputBlur } = this.props;
+    const { focused, mouseIn, searchInfoList, handleInputFocus, handleInputBlur } = this.props;
     return(
       <HeaderWrapper className="width-limit">
         <Logo/>
@@ -41,7 +41,7 @@ class Header extends Component {
             >
               <NavSearch
                 className={focused ? "focused" : ""}
-                onFocus={handleInputFocus}
+                onFocus={handleInputFocus.bind(this, searchInfoList)}
                 onBlur={handleInputBlur}
               />
             </CSSTransition>
@@ -64,7 +64,7 @@ class Header extends Component {
 
 
   showSearchInfo = () => {
-    const { searchInfoList, currentPage, totalPage, handleMouseEnter, handleMouseLeave, handleSwitchPage } = this.props;
+    const { searchInfoList, currentPage, totalPage, iconRotate, handleMouseEnter, handleMouseLeave, handleSwitchPage, setIconRotate } = this.props;
     const currentInfoList = [];
     for(let i = (currentPage-1) * 10; i < currentPage * 10 && i < searchInfoList.size; i++) {
       currentInfoList.push(searchInfoList.get(i));
@@ -79,6 +79,10 @@ class Header extends Component {
             热门搜索
             <SearchInfoSwitch onClick={handleSwitchPage.bind(this, currentPage, totalPage)}>
               <CSSTransition
+                in={iconRotate}
+                timeout={300}
+                classNames="rotate"
+                onEntered={setIconRotate.bind(this, false)}
               >
                 <span className="iconfont spin">&#xe601;</span>
               </CSSTransition>
@@ -109,6 +113,7 @@ const mapStateToProps = (state) => {
     //focused: state.get('header').get('focused')
     focused: state.getIn(['header', 'focused']),
     mouseIn: state.getIn(['header', 'mouseIn']),
+    iconRotate: state.getIn(['header', 'iconRotate']),
     searchInfoList: state.getIn(['header', 'searchInfoList']),
     currentPage: state.getIn(['header', 'currentPage']),
     totalPage: state.getIn(['header', 'totalPage']),
@@ -117,25 +122,32 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus() {
-      dispatch(actionCreator.fetchSearchInfoList());
-      dispatch(actionCreator.searchFocus());
+    handleInputFocus(searchInfoList) {
+      if(searchInfoList.size === 0) {
+        dispatch(actionCreators.fetchSearchInfoList());
+      }
+      dispatch(actionCreators.searchFocus());
+      dispatch(actionCreators.iconRotate(false));
     },
     handleInputBlur() {
-      dispatch(actionCreator.searchBlur());
+      dispatch(actionCreators.searchBlur());
     },
     handleMouseEnter() {
-      dispatch(actionCreator.mouseEnter());
+      dispatch(actionCreators.mouseEnter());
     },
     handleMouseLeave() {
-      dispatch(actionCreator.mouseLeave());
+      dispatch(actionCreators.mouseLeave());
     },
     handleSwitchPage(currentPage, totalPage) {
       if(currentPage < totalPage) {
-        dispatch(actionCreator.switchPage(currentPage + 1));
+        dispatch(actionCreators.switchPage(currentPage + 1));
       } else {
-        dispatch(actionCreator.switchPage(1));
+        dispatch(actionCreators.switchPage(1));
       }
+      dispatch(actionCreators.iconRotate(true));
+    },
+    setIconRotate(rotate) {
+      dispatch(actionCreators.iconRotate(rotate));
     }
   }
 };
