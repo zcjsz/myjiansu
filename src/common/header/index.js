@@ -46,8 +46,8 @@ class Header extends Component {
               />
             </CSSTransition>
             <span className={focused ? "iconfont zoom focused" : "iconfont zoom"}>
-            &#xe637;
-          </span>
+              &#xe637;
+            </span>
             { (focused || mouseIn) ? this.showSearchInfo() : null }
           </SearchWrapper>
           <Addition>
