@@ -10,8 +10,8 @@ class Article extends Component {
         return (
           <ArticleItem key={item.get('id')}>
             <ArticleInfo>
-              {/*<a className='article-title' href='/'>{item.get('title')}</a>*/}
-              {/*<p className='article-desc'>{item.get('desc')}</p>*/}
+              <a className='article-title' href='/'>{item.get('title')}</a>
+              <p className='article-desc'>{item.get('desc')}</p>
               <div className='article-meta'>
                 <span className='article-paid iconfont'>{item.get('paid')}</span>
                 <span className='article-nickname'>{item.get('nickname')}</span>
@@ -19,7 +19,7 @@ class Article extends Component {
                 <span className='article-like iconfont'>{item.get('like')}</span>
               </div>
             </ArticleInfo>
-            {/*<ArticleImg className='article-img' alt='' src={item.get('imgUrl')} />*/}
+            <ArticleImg className='article-img' alt='' src={item.get('imgUrl')} />
           </ArticleItem>
         );
       })

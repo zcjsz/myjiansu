@@ -22,7 +22,6 @@ export const HomeRight = styled.div`
   width: 280px;
   padding-top: 30px;
   margin-left: 40px;
-  background: aquamarine;
 `;
 
 export const TopicWrapper = styled.div`
@@ -82,6 +81,10 @@ export const ArticleInfo = styled.div`
   }
   .article-meta {
     color: #b4b4b4;
+    font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
     span {
       margin-right: 20px;
     }
@@ -90,15 +93,18 @@ export const ArticleInfo = styled.div`
     }
     .article-paid::before {
       content: "\\e63c";
-      margin-right: 5px;
+      margin-right: 2px;
+      font-size: 14px;
     }
     .article-comment::before {
       content: "\\e684";
-      margin-right: 5px;
+      margin-right: 2px;
+      font-size: 14px;
     }
     .article-like::before {
       content: "\\e755";
-      margin-right: 5px;
+      margin-right: 2px;
+      font-size: 14px;
     }
   }
   
@@ -111,7 +117,17 @@ export const ArticleImg = styled.img`
   border: 1px solid #f0f0f0;
 `;
 
+export const RecommendWrapper = styled.div`
+  width: 280px;
+`;
 
+export const RecommendItem = styled.div`
+  width: 280px;
+  height: 50px;
+  margin-bottom: 6px;
+  background: url(${(props)=>{return props.imgUrl}});
+  background-size: contain;
+`;
 
 
 
